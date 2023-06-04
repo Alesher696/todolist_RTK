@@ -1,0 +1,138 @@
+.app {
+background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    position: absolute;
+    min-width: 100%;
+}
+.additionalApp{
+    margin-top: 60px;
+    margin-left: 10px;
+}
+.todolists {
+    display: flex;
+    flex-direction: row;
+}
+
+.inputs{
+    background-color: rgba(255, 255, 255, 0.73);
+    width: max-content;
+    border-radius: 20px;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.InputForTodo{
+    display: flex;
+    width: max-content;
+}
+.buttonActive {
+    background-color: #4fa9a9;
+    width: 200px;
+    display: inline-block;
+}
+
+.NavBar {
+
+}
+
+.ErrorBar {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.wishList {
+    margin: 0 auto;
+}
+
+.Btn {
+    margin-top: 10px;
+    display: flex;
+    width: max-content;
+}
+
+.btnAdd {
+    color: rgba(122, 122, 122, 0.63);
+}
+
+.btnFilters {
+    position: relative;
+    margin-left: 20px;
+}
+
+.loader {
+    background-color: #1ea7fd;
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*justify-items: center;*/
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.todolist {
+
+}
+
+.remove-btn {
+    margin-right: 0.5rem;
+}
+
+/*=====================AnimationGroup============================*/
+
+.item-enter {
+    opacity: 0;
+}
+.item-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}
+.item-exit {
+    opacity: 1;
+}
+.item-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+}
+
+/*.todoStyle-enter-active {*/
+/*    animation: fade-in 500ms forwards;*/
+/*}*/
+
+.todoStyle-exit-active {
+    animation: fade-out 500ms forwards;
+}
+
+/*@keyframes fade-in {*/
+/*    0% {*/
+/*        opacity: 0;*/
+/*        transform: translateX(-150px);*/
+/*    }*/
+/*    100% {*/
+/*        opacity: 1;*/
+/*        transform: translateX(0);*/
+/*    }*/
+/*}*/
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(150px);
+    }
+}
+
+/*========================================================*/
