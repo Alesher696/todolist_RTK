@@ -1,20 +1,18 @@
-import { Dispatch } from 'redux'
-import { ResponseType } from '../api/todolist-api'
-import {appActionsType, setErrorAC, setStatusAC} from "../redux/appReducer";
+import {Dispatch} from 'redux'
+import {ResponseType} from '../api/todolist-api'
+import {appActions} from "redux/appSlice";
 
 // generic function
-export const handleServerAppError = <T>(result: ResponseType<T>, dispatch: ErrorUtilsDispatchType) => {
+export const handleServerAppError = <T>(result: ResponseType<T>, dispatch: Dispatch) => {
     if (result.messages.length) {
-        dispatch(setErrorAC(result.messages[0]))
+        dispatch(appActions.setError({error: result.messages[0]}))
     } else {
-        dispatch(setErrorAC('Some error occurred'))
+        dispatch(appActions.setError({error: 'Some error occurred'}))
     }
-    dispatch(setStatusAC('failed'))
+    dispatch(appActions.setStatus({status: 'failed'}))
 }
 
-export const handleServerNetworkError = (error: { message: string }, dispatch: ErrorUtilsDispatchType) => {
-    dispatch(setErrorAC(error.message))
-    dispatch(setStatusAC('failed'))
+export const handleServerNetworkError = (error: { message: string }, dispatch: Dispatch) => {
+    dispatch(appActions.setError({error: error.message}))
+    dispatch(appActions.setStatus({status: 'failed'}))
 }
-
-type ErrorUtilsDispatchType = Dispatch<appActionsType>

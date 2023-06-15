@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
-import {LayOut} from "./components/LayOut";
-import {Login} from "./components/login";
-import {useAppDispatch, useAppSelector} from "./hooks/hooks";
-import {appSelector} from "./redux/selectors";
-import {Loader} from "./components/Loader";
-import {initializeAppTC, setBackGroundURLTC} from "./redux/appReducer";
-import {Settings} from "./components/Settings";
+import {LayOut} from "components/LayOut";
+import {Login} from "components/login";
+import {useAppDispatch, useAppSelector} from "hooks/hooks";
+import {Loader} from "components/Loader";
+import {initializeAppTC, setBackGroundURLTC} from "redux/appSlice";
+import {Settings} from "components/Settings";
+import {appSelector} from "redux/selectors";
 
 
 function App() {
+
     const dispatch = useAppDispatch()
     const app = useAppSelector(appSelector)
 
@@ -20,7 +21,6 @@ function App() {
     useEffect(() => {
         dispatch(initializeAppTC())
     }, [])
-
 
   if(!app.isInitialized){
     return <Loader/>

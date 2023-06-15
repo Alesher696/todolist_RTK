@@ -1,8 +1,8 @@
-import { removeTaskTC, updateTaskTC} from "../redux/tasksReducer";
-import {TasksPropsType} from "../Tasks";
+import { removeTaskTC, updateTaskTC} from "redux/tasksSlice";
+import {TasksPropsType} from "Tasks";
 
 import {useAppDispatch} from "./hooks";
-import {TaskStatuses} from "../api/todolist-api";
+import {TaskStatuses} from "api/todolist-api";
 
 export const useTask = (props: TasksPropsType)=>{
 

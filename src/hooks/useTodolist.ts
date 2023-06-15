@@ -1,9 +1,5 @@
-import {addTaskTC} from "../redux/tasksReducer";
-import {
-    AddTodolistTC,
-    ChangeTodolistFilterAC,
-    DeleteTodolistTC, UpdateTodoListTC,
-} from "../redux/todolistReducer";
+import {addTaskTC} from "redux/tasksSlice";
+import {AddTodolistTC, DeleteTodolistTC, todolistActions, UpdateTodoListTC} from "redux/todolistSlice";
 import {useAppDispatch} from "./hooks";
 
 
@@ -24,7 +20,7 @@ export const useTodolist =(id: string, title: string, filter: string)=>{
     }
 
     const changeFilter = (filter: string) => {
-        dispatch(ChangeTodolistFilterAC(id, filter))
+        dispatch(todolistActions.ChangeTodolistFilter({todolistId: id, newFilter: filter }))
     }
 
     const changeTodoTitle=(title:string, id:string)=>{

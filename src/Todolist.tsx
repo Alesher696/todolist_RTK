@@ -1,10 +1,10 @@
 import React from 'react';
-import {AddItem} from "./AddItem";
-import {initialStateTodolistType,} from "./redux/todolistReducer";
-import {Tasks} from "./Tasks";
-import {ButtonsFilter} from "./ButtonsFilter";
-import {EditableSpan} from "./EditableSpan";
-import {useTodolist} from "./hooks/useTodolist";
+import {AddItem} from "AddItem";
+import {domainTodolistType} from "redux/todolistSlice";
+import {Tasks} from "Tasks";
+import {ButtonsFilter} from "ButtonsFilter";
+import {EditableSpan} from "EditableSpan";
+import {useTodolist} from "hooks/useTodolist";
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 
 
 export type TodolistProps = {
-    todolist: initialStateTodolistType
+    todolist: domainTodolistType
     index: number
 }
 

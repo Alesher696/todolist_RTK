@@ -1,14 +1,15 @@
 import React, {ChangeEvent} from 'react';
-import {EditableSpan} from "./EditableSpan";
-import {useTask} from "./hooks/useTask";
-import {useAppSelector} from "./hooks/hooks";
-import {TaskSelector} from "./redux/selectors";
-import {TaskStatuses} from "./api/todolist-api";
+import {EditableSpan} from "EditableSpan";
+import {useTask} from "hooks/useTask";
+import {useAppSelector} from "hooks/hooks";
+import {TaskSelector} from "redux/selectors";
+import {TaskStatuses} from "api/todolist-api";
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from "@mui/material/Button";
 import Checkbox from '@mui/material/Checkbox';
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import './App.css'
+import {TasksType} from "redux/tasksSlice";
 
 
 export type TasksPropsType = {
@@ -33,14 +34,14 @@ export const Tasks = (props: TasksPropsType) => {
     let allTasks = tasks[props.todolistId];
 
     if (props.filter === 'active') {
-       allTasks = tasks[props.todolistId].filter(el=> el.status === TaskStatuses.New)
+       allTasks = tasks[props.todolistId].filter((el:TasksType)=> el.status === TaskStatuses.New)
 
     } if(props.filter === 'completed'){
-        allTasks = tasks[props.todolistId].filter(el=> el.status === TaskStatuses.Completed)
+        allTasks = tasks[props.todolistId].filter((el:TasksType)=> el.status === TaskStatuses.Completed)
 
     }
 
-     let mappedTasks = allTasks?.map(t => (
+     let mappedTasks = allTasks?.map((t:TasksType) => (
             <CSSTransition key={t.id}
                            timeout={500}
                            classNames='item'>

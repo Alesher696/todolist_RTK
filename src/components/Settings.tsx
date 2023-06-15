@@ -1,5 +1,5 @@
 import React from 'react';
-import {AddItem} from "../AddItem";
+import {AddItem} from "AddItem";
 
 
 type SettingsProps = {

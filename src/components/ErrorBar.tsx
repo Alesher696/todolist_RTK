@@ -1,9 +1,9 @@
 import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, {AlertProps} from '@mui/material/Alert';
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {appSelector} from "../redux/selectors";
-import {setErrorAC} from "../redux/appReducer";
+import {useAppDispatch, useAppSelector} from "hooks/hooks";
+import {appActions} from "redux/appSlice";
+
 
 
 
@@ -16,7 +16,8 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export const ErrorBar = () => {
-    const status = useAppSelector(appSelector)
+
+    const status = useAppSelector(state=>state.app)
     const dispatch = useAppDispatch()
 
 
@@ -25,7 +26,7 @@ export const ErrorBar = () => {
             return;
         }
 
-        dispatch(setErrorAC(null))
+        dispatch(appActions.setError({error:null}))
     };
 
     return (

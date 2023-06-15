@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react';
 import {NavBar} from "./NavBar";
 import {LoadingBar} from "./LoadingBar";
-import {AddItem} from "../AddItem";
-import {Todolist} from "../Todolist";
+import {AddItem} from "AddItem";
+import {Todolist} from "Todolist";
 import {ErrorBar} from "./ErrorBar";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {appSelector, authSelector, TodolistSelector} from "../redux/selectors";
-import {AddTodolistTC, GetTodolistTC} from "../redux/todolistReducer";
+import {useAppDispatch, useAppSelector} from "hooks/hooks";
+import {appSelector, authSelector, TodolistSelector} from "redux/selectors";
+import {AddTodolistTC, GetTodolistTC} from "redux/todolistSlice";
 import '../App.css'
 import {Navigate, Outlet} from "react-router-dom";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import {getBackGroundURLTC} from "../redux/appReducer";
+import {getBackGroundURLTC} from "redux/appSlice";
 
-type LayOutProps = {}
+type LayOutProps = {
+
+}
 
 export const LayOut = (props: LayOutProps) => {
 
@@ -33,11 +35,9 @@ export const LayOut = (props: LayOutProps) => {
         dispatch(getBackGroundURLTC())
     }, [])
 
-    
     if (!auth.isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
-
 
     return (
         <div className={'app'} style={{backgroundImage: `url(${app.BackgroundURL})`}}>
