@@ -5,9 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {NavLink, useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {authSelector} from "redux/selectors";
-import {logoutTC} from "redux/authSlice";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {authSelector} from "common/utils/selectors";
+import {logoutTC} from "features/login/authSlice";
 import CheckIcon from '@mui/icons-material/Check';
 import ToggleButton from '@mui/material/ToggleButton';
 

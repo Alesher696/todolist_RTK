@@ -1,5 +1,5 @@
-import {initialStateTaskType, taskActions} from "redux/tasksSlice";
-import {TaskPriority, TaskStatuses} from "api/todolist-api";
+import {initialStateTaskType, taskActions} from "features/tasks/tasksSlice";
+import {TaskPriority, TaskStatuses} from "common/api/todolist-api";
 //
 // const startState: initialStateTaskType = {}
 //

@@ -1,8 +1,8 @@
 import React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, {AlertProps} from '@mui/material/Alert';
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {appActions} from "redux/appSlice";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {appActions} from "app/appSlice";
 
 
 

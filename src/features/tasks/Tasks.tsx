@@ -1,15 +1,15 @@
 import React, {ChangeEvent} from 'react';
-import {EditableSpan} from "EditableSpan";
-import {useTask} from "hooks/useTask";
-import {useAppSelector} from "hooks/hooks";
-import {TaskSelector} from "redux/selectors";
-import {TaskStatuses} from "api/todolist-api";
+import {EditableSpan} from "common/components/EditableSpan";
+import {useTask} from "common/hooks/useTask";
+import {useAppSelector} from "common/hooks/hooks";
+import {TaskSelector} from "common/utils/selectors";
+import {TaskStatuses} from "common/api/todolist-api";
 import ClearIcon from '@mui/icons-material/Clear';
 import Button from "@mui/material/Button";
 import Checkbox from '@mui/material/Checkbox';
 import {TransitionGroup, CSSTransition} from "react-transition-group";
-import './App.css'
-import {TasksType} from "redux/tasksSlice";
+import 'app/App.css'
+import {TasksType} from "features/tasks/tasksSlice";
 
 
 export type TasksPropsType = {

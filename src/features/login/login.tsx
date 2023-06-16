@@ -7,13 +7,13 @@ import FormGroup from '@mui/material/FormGroup';
 import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {loginTC} from "redux/authSlice";
-import {LoadingBar} from "./LoadingBar";
-import {appSelector, authSelector} from "redux/selectors";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {loginTC} from "features/login/authSlice";
+import {LoadingBar} from "common/components/LoadingBar";
+import {appSelector, authSelector} from "common/utils/selectors";
 import {Navigate} from "react-router-dom";
-import {ErrorBar} from "./ErrorBar";
-import '../App.css'
+import {ErrorBar} from "common/components/ErrorBar";
+import 'app/App.css'
 import {SubmitHandler, useForm} from "react-hook-form";
 
 

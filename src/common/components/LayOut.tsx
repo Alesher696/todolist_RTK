@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
-import {NavBar} from "./NavBar";
-import {LoadingBar} from "./LoadingBar";
-import {AddItem} from "AddItem";
-import {Todolist} from "Todolist";
-import {ErrorBar} from "./ErrorBar";
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {appSelector, authSelector, TodolistSelector} from "redux/selectors";
-import {AddTodolistTC, GetTodolistTC} from "redux/todolistSlice";
-import '../App.css'
+import {NavBar} from "common/components/NavBar";
+import {LoadingBar} from "common/components/LoadingBar";
+import {AddItem} from "common/components/AddItem";
+import {Todolist} from "features/todolist/Todolist";
+import {ErrorBar} from "common/components/ErrorBar";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {appSelector, authSelector, TodolistSelector} from "common/utils/selectors";
+import {AddTodolistTC, GetTodolistTC} from "features/todolist/todolistSlice";
+import 'app/App.css'
 import {Navigate, Outlet} from "react-router-dom";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
-import {getBackGroundURLTC} from "redux/appSlice";
+import {getBackGroundURLTC} from "app/appSlice";
 
 type LayOutProps = {
 

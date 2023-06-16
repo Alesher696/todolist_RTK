@@ -1,8 +1,8 @@
 import {Dispatch} from "redux";
-import {AuthAPI} from "api/todolist-api";
-import {authActions} from "redux/authSlice";
+import {AuthAPI} from "common/api/todolist-api";
+import {authActions} from "features/login/authSlice";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AppThunk} from "redux/store";
+import {AppThunk} from "app/store";
 
 // export type InitialStateType = typeof initialState
 //

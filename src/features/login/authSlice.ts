@@ -1,8 +1,8 @@
-import {AppThunk} from "./store";
-import {AuthAPI, LoginParamsType} from "api/todolist-api";
-import {handleServerAppError, handleServerNetworkError} from "utils/error-utils";
+import {AppThunk} from "app/store";
+import {AuthAPI, LoginParamsType} from "common/api/todolist-api";
+import {handleServerAppError, handleServerNetworkError} from "common/utils/error-utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {appActions} from "redux/appSlice";
+import {appActions} from "app/appSlice";
 
 
 //for test

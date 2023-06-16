@@ -85,8 +85,8 @@ export const TasksAPI = {
     getTasks(todolistId: string) {
         return Instanse.get(`todo-lists/${todolistId}/tasks`)
     },
-    addTask(todolistId: string, title: string) {
-        return Instanse.post(`todo-lists/${todolistId}/tasks`, {title})
+    addTask(arg:addTaskArgType) {
+        return Instanse.post(`todo-lists/${arg.todolistId}/tasks`, {title: arg.title})
     },
     updateTask(todolistId: string, taskId: string, status: UpdateTaskModelType){
       return Instanse.put<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, status)
@@ -107,3 +107,7 @@ export const AuthAPI = {
         return Instanse.delete('auth/login')
     }
 }
+
+
+export type addTaskArgType = { todolistId:string, title:string}
+export type updateTaskArgType<T> = {todolistId: string, taskId: string, model: T}

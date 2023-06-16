@@ -1,7 +1,7 @@
-import {AppDispatch, AppThunk} from "./store";
-import {TasksAPI, TodolistAPI, TodolistType} from "api/todolist-api";
-import {taskActions, tasksThunks} from "redux/tasksSlice";
-import {appActions, RequestStatusType} from "redux/appSlice";
+import {AppDispatch, AppThunk} from "app/store";
+import {TasksAPI, TodolistAPI, TodolistType} from "common/api/todolist-api";
+import {taskActions, tasksThunks} from "features/tasks/tasksSlice";
+import {appActions, RequestStatusType} from "app/appSlice";
 import {Dispatch} from "redux";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 

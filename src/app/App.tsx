@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {Route, Routes} from "react-router-dom";
-import {LayOut} from "components/LayOut";
-import {Login} from "components/login";
-import {useAppDispatch, useAppSelector} from "hooks/hooks";
-import {Loader} from "components/Loader";
-import {initializeAppTC, setBackGroundURLTC} from "redux/appSlice";
-import {Settings} from "components/Settings";
-import {appSelector} from "redux/selectors";
+import {LayOut} from "common/components/LayOut";
+import {Login} from "features/login/login";
+import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
+import {Loader} from "common/components/Loader";
+import {initializeAppTC, setBackGroundURLTC} from "app/appSlice";
+import {Settings} from "common/components/Settings";
+import {appSelector} from "common/utils/selectors";
 
 
 function App() {

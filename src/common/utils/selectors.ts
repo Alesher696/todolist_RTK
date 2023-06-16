@@ -1,4 +1,4 @@
-import {storeType} from "./store";
+import {storeType} from "app/store";
 
 
 export const TodolistSelector=(state:storeType) => state.todolist

@@ -1,9 +1,9 @@
-import {todolistReducer} from "redux/todolistSlice";
+import {todolistReducer} from "features/todolist/todolistSlice";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {appReducer} from "redux/appSlice";
-import {authReducer} from "redux/authSlice";
+import {appReducer} from "app/appSlice";
+import {authReducer} from "features/login/authSlice";
 import {AnyAction, combineReducers, configureStore} from "@reduxjs/toolkit";
-import {taskReducer} from "redux/tasksSlice";
+import {taskReducer} from "features/tasks/tasksSlice";
 
 
 const rootReducer = combineReducers({
