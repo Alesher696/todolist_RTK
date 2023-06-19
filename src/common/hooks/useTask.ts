@@ -1,4 +1,4 @@
-import {removeTaskTC, tasksThunks} from "features/tasks/tasksSlice";
+import {tasksThunks} from "features/tasks/tasksSlice";
 import {TasksPropsType} from "features/tasks/Tasks";
 
 import {useAppDispatch} from "common/hooks/hooks";
@@ -17,7 +17,7 @@ export const useTask = (props: TasksPropsType)=>{
     }
 
     const removeTask = (taskId:string) => {
-        dispatch(removeTaskTC(props.todolistId, taskId))
+        dispatch(tasksThunks.removeTask({todolistId: props.todolistId, taskId: taskId}))
     }
 
     return{

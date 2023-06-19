@@ -7,7 +7,6 @@ import {
     updateTaskArgType,
     UpdateTaskModelType
 } from "common/api/todolist-api";
-import {AppThunk} from "app/store";
 import {appActions, RequestStatusType} from "app/appSlice";
 import {handleServerAppError, handleServerNetworkError} from "common/utils/error-utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
@@ -108,6 +107,21 @@ const updateTask = createAppAsyncThunk<updateTaskArgType<any>, updateTaskArgType
         }
     })
 
+const removeTask = createAppAsyncThunk<{todolistId: string, taskId: string},{todolistId: string, taskId: string}>('tasks/removeTask',
+    async (arg, thunkAPI)=>{
+    const {dispatch, rejectWithValue} = thunkAPI
+    try {
+        dispatch(taskActions.setEntityTaskStatus({todolistId: arg.todolistId, taskId: arg.taskId, status: 'loading'}))
+        const result = await TasksAPI.deleteTask(arg.todolistId, arg.taskId)
+        // dispatch(taskActions.RemoveTask({todoListId: arg.todolistId, taskId: arg.taskId}))
+        dispatch(taskActions.setEntityTaskStatus({todolistId: arg.todolistId, taskId: arg.taskId, status: 'idle'}))
+        return arg
+    } catch (e) {
+        console.log(e)
+        return rejectWithValue(e)
+    }
+})
+
 export type TasksType = TaskType & { entityTaskStatus: string }
 
 export type initialStateTaskType = {
@@ -121,12 +135,6 @@ const slice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-        RemoveTask: (state, action: PayloadAction<{ todoListId: string, taskId: string }>) => {
-            const tasks = state[action.payload.todoListId]
-            const index = tasks.findIndex((t: TasksType) => t.id === action.payload.taskId)
-            if (index !== -1) tasks.splice(index, 1)
-        },
-
         setEntityTaskStatus: (state, action: PayloadAction<{ todolistId: string, taskId: string, status: RequestStatusType }>) => {
             // return {...state, [action.payload.todolistId]: state[action.payload.todolistId].map(el => ({...el, entityTaskStatus: action.payload.status}))}
             const tasks = state[action.payload.todolistId]
@@ -161,22 +169,17 @@ const slice = createSlice({
                     tasks[index] = {...tasks[index], ...action.payload.model}
                 }
             })
+            .addCase(removeTask.fulfilled, (state,action)=>{
+                const tasks = state[action.payload.todolistId]
+                const index = tasks.findIndex((t: TasksType) => t.id === action.payload.taskId)
+                if (index !== -1) tasks.splice(index, 1)
+            })
     }
 })
 
 export const taskReducer = slice.reducer
 export const taskActions = slice.actions
-export const tasksThunks = {getTasks, addTask, updateTask}
+export const tasksThunks = {getTasks, addTask, updateTask, removeTask}
 
-export const removeTaskTC = (todolistId: string, taskId: string): AppThunk => async (dispatch) => {
-    try {
-        dispatch(taskActions.setEntityTaskStatus({todolistId: todolistId, taskId: taskId, status: 'loading'}))
-        const result = await TasksAPI.deleteTask(todolistId, taskId)
-        dispatch(taskActions.RemoveTask({todoListId: todolistId, taskId: taskId}))
-        dispatch(taskActions.setEntityTaskStatus({todolistId: todolistId, taskId: taskId, status: 'idle'}))
-    } catch (e) {
-        console.log(e)
-    }
-}
 
 

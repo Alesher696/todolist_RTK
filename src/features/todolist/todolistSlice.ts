@@ -47,7 +47,7 @@ const slice = createSlice({
             // return state.map(el => el.id === action.todoListId ? {...el, entityStatus: action.entityStatus} : el)
             const todo = state.find(todo => todo.id === action.payload.todoListId)
             if (todo) {
-                todo.title = action.payload.entityStatus
+                todo.entityStatus = action.payload.entityStatus
             }
         },
     },

@@ -35,6 +35,7 @@ export const Todolist = ({todolist, ...restProps}: TodolistProps) => {
     }
 
     const {id, title, filter, entityStatus} = todolist
+    
     const {
         addTask,
         removeTodoList,

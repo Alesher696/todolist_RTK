@@ -3,6 +3,7 @@ import {AuthAPI} from "common/api/todolist-api";
 import {authActions} from "features/login/authSlice";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "app/store";
+import {createAppAsyncThunk} from "common/utils/app-async-thunk";
 
 // export type InitialStateType = typeof initialState
 //
@@ -14,6 +15,21 @@ import {AppThunk} from "app/store";
 // }
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
+const initializedApp = createAppAsyncThunk('app/initialized', async(_,thunkAPI)=>{
+   const {dispatch, rejectWithValue } = thunkAPI
+    try{
+       const result = await AuthAPI.me()
+        if (result.data.resultCode === 0) {
+                    dispatch(authActions.setLogin({login: result.data.data.login}))
+                    dispatch(authActions.setIsLoggedIn({value: true}));
+                }
+        return {isInitialized: true}
+    }
+    catch (e) {
+        return rejectWithValue(e)
+    }
+})
 
 const slice = createSlice({
     name: 'app',
@@ -40,25 +56,31 @@ const slice = createSlice({
             // return {...state, BackgroundURL: action.url}
             state.BackgroundURL = action.payload.url
         }
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(initializedApp.fulfilled,(state,action)=>{
+            state.isInitialized = action.payload.isInitialized
+        })
     }
 })
 
 export const appReducer = slice.reducer
 export const appActions = slice.actions
+export const appThunks = {initializedApp}
 
-export const initializeAppTC = () => (dispatch: Dispatch) => {
-    AuthAPI.me().then(res => {
-        if (res.data.resultCode === 0) {
-            dispatch(authActions.setLogin({login: res.data.data.login}))
-            dispatch(authActions.setIsLoggedIn({value: true}));
-
-            // } else if (res.data.resultCode === 1) {
-            //         handleServerAppError(res.data, dispatch)
-            //     }
-        }
-        dispatch(appActions.setIsInitialized({isInitialized: true}))
-    })
-}
+// export const initializeAppTC = () => (dispatch: Dispatch) => {
+//     AuthAPI.me().then(res => {
+//         if (res.data.resultCode === 0) {
+//             dispatch(authActions.setLogin({login: res.data.data.login}))
+//             dispatch(authActions.setIsLoggedIn({value: true}));
+//
+//             // } else if (res.data.resultCode === 1) {
+//             //         handleServerAppError(res.data, dispatch)
+//             //     }
+//         }
+//         dispatch(appActions.setIsInitialized({isInitialized: true}))
+//     })
+// }
 
 export const setBackGroundURLTC = (url: string):AppThunk => (dispatch: Dispatch) => {
     localStorage.setItem('backgroundURL', JSON.stringify(url))

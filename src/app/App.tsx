@@ -4,7 +4,7 @@ import {LayOut} from "common/components/LayOut";
 import {Login} from "features/login/login";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {Loader} from "common/components/Loader";
-import {initializeAppTC, setBackGroundURLTC} from "app/appSlice";
+import {appThunks, setBackGroundURLTC} from "app/appSlice";
 import {Settings} from "common/components/Settings";
 import {appSelector} from "common/utils/selectors";
 
@@ -19,7 +19,8 @@ function App() {
     }
 
     useEffect(() => {
-        dispatch(initializeAppTC())
+        dispatch(appThunks.initializedApp())
+
     }, [])
 
   if(!app.isInitialized){

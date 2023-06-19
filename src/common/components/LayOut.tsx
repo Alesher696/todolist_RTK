@@ -11,6 +11,9 @@ import 'app/App.css'
 import {Navigate, Outlet} from "react-router-dom";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {getBackGroundURLTC} from "app/appSlice";
+import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box';
+
 
 type LayOutProps = {
 
@@ -43,8 +46,13 @@ export const LayOut = (props: LayOutProps) => {
         <div className={'app'} style={{backgroundImage: `url(${app.BackgroundURL})`}}>
             {/*<Loader/>*/}
             <NavBar/>
+            <br/>
+            <br/>
+            <br/>
             {app.status === "loading" && <LoadingBar/>}
             <br/>
+
+
             <div className={'additionalApp'}>
                 <br/>
                 <div className={'inputs'}>
