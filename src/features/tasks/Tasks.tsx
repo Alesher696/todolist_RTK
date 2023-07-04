@@ -38,7 +38,6 @@ export const Tasks = (props: TasksPropsType) => {
 
     } if(props.filter === 'completed'){
         allTasks = tasks[props.todolistId].filter((el:TasksType)=> el.status === TaskStatuses.Completed)
-
     }
 
      let mappedTasks = allTasks?.map((t:TasksType) => (

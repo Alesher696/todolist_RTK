@@ -5,14 +5,13 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "app/store";
 import {createAppAsyncThunk} from "common/utils/app-async-thunk";
 
-// export type InitialStateType = typeof initialState
-//
-// const initialState = {
-//   status: 'idle' as RequestStatusType,
-//   error: null as string | null,
-//   isInitialized: false,
-//   BackgroundURL: ''
-// }
+
+const initialState = {
+  status: 'idle' as RequestStatusType,
+  error: null as string | null,
+  isInitialized: false,
+  BackgroundURL: ''
+}
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
@@ -33,12 +32,7 @@ const initializedApp = createAppAsyncThunk('app/initialized', async(_,thunkAPI)=
 
 const slice = createSlice({
     name: 'app',
-    initialState: {
-        status: 'idle' as RequestStatusType,
-        error: null as string | null,
-        isInitialized: false,
-        BackgroundURL: ''
-    },
+    initialState: initialState,
     reducers: {
         setIsInitialized: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
             // return {...state, isInitialized: action.isInitialized}
@@ -68,24 +62,14 @@ export const appReducer = slice.reducer
 export const appActions = slice.actions
 export const appThunks = {initializedApp}
 
-// export const initializeAppTC = () => (dispatch: Dispatch) => {
-//     AuthAPI.me().then(res => {
-//         if (res.data.resultCode === 0) {
-//             dispatch(authActions.setLogin({login: res.data.data.login}))
-//             dispatch(authActions.setIsLoggedIn({value: true}));
-//
-//             // } else if (res.data.resultCode === 1) {
-//             //         handleServerAppError(res.data, dispatch)
-//             //     }
-//         }
-//         dispatch(appActions.setIsInitialized({isInitialized: true}))
-//     })
-// }
+
+//========================================RequireToRefactor===================================================
 
 export const setBackGroundURLTC = (url: string):AppThunk => (dispatch: Dispatch) => {
     localStorage.setItem('backgroundURL', JSON.stringify(url))
     dispatch(appActions.setBackgroundURL({url: url}))
 }
+
 export const getBackGroundURLTC = ():AppThunk => (dispatch: Dispatch) => {
     let backGroundURL = localStorage.getItem('backgroundURL')
     if (backGroundURL) {

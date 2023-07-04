@@ -6,13 +6,11 @@ import {Todolist} from "features/todolist/Todolist";
 import {ErrorBar} from "common/components/ErrorBar";
 import {useAppDispatch, useAppSelector} from "common/hooks/hooks";
 import {appSelector, authSelector, TodolistSelector} from "common/utils/selectors";
-import {AddTodolistTC, GetTodolistTC} from "features/todolist/todolistSlice";
+import {todolistThunk} from "features/todolist/todolistSlice";
 import 'app/App.css'
 import {Navigate, Outlet} from "react-router-dom";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {getBackGroundURLTC} from "app/appSlice";
-import Skeleton from '@mui/material/Skeleton';
-import Box from '@mui/material/Box';
 
 
 type LayOutProps = {
@@ -27,14 +25,14 @@ export const LayOut = (props: LayOutProps) => {
     const dispatch = useAppDispatch()
 
     const addTodolist = (title: string) => {
-        dispatch(AddTodolistTC(title))
+        dispatch(todolistThunk.addTodolist(title))
     }
 
     useEffect(() => {
         if (!auth.isLoggedIn) {
             return
         }
-        dispatch(GetTodolistTC())
+        dispatch(todolistThunk.getTodolist())
         dispatch(getBackGroundURLTC())
     }, [])
 
@@ -78,4 +76,10 @@ export const LayOut = (props: LayOutProps) => {
     );
 };
 
-
+function hello(){
+    console.log('hello')
+    test()
+}
+function test() {
+    console.log('test')
+}

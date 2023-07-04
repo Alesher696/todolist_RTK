@@ -109,5 +109,5 @@ export const AuthAPI = {
 }
 
 
-export type addTaskArgType = { todolistId:string, title:string}
+export type addTaskArgType = {todolistId:string, title:string}
 export type updateTaskArgType<T> = {todolistId: string, taskId: string, model: T}
